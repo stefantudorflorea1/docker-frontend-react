@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## CI
+[![Build Status](https://app.travis-ci.com/stefantudorflorea1/docker-frontend-react.svg?branch=master)](https://app.travis-ci.com/stefantudorflorea1/docker-frontend-react)
+
 ## Available Scripts
 
 In the project directory, you can run:
