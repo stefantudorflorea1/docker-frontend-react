@@ -1,0 +1,14 @@
+# always sudo for what we are doing
+sudo: required
+
+# install the required deps
+services:
+  - docker
+
+# build our image
+before_install:
+  - docker build -f Dockerfile.dev -t sfl/docker-frontend-react .
+
+# scripts we want to execute. They all must return 0 for success
+script:
+  - docker run -e CI=true sfl/docker-frontend-react npm run test
