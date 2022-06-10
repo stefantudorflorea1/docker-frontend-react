@@ -1,6 +1,3 @@
-# always sudo for what we are doing
-sudo: required
-
 # install the required deps
 services:
   - docker
@@ -12,3 +9,19 @@ before_install:
 # scripts we want to execute. They all must return 0 for success
 script:
   - docker run -e CI=true sfl/docker-frontend-react npm run test
+
+# when tests pass, we need to deploy to AWS beanstalk
+deploy:
+  # config take directly from beanstalk
+  provider: elasticbeanstalk
+  region: 'eu-central-1'
+  app: 'docker-frontend-react'
+  env: 'Dockerfrontendreact-env'
+  bucket_name: 'elasticbeanstalk-eu-central-1-611226360535'
+  bucket_path: 'docker-frontend-react'
+  access-key-id: ${AWS_ACCESS_KEY}
+  secret-access-key: ${AWS_SECRET_ACCESS_KEY}
+
+  # when to deploy
+  on:
+    branch: master

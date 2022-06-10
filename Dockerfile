@@ -15,3 +15,6 @@ RUN npm run build
 # run phase, copy resulting build/ folder from prev step
 FROM nginx
 COPY --from=build /home/node/app/build /usr/share/nginx/html
+
+# AWS elasticbeanstalk relies on this to route traffic
+EXPOSE 80
